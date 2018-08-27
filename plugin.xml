@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-window-background" version="1.0.2">
+  <name>Window Background</name>
+  <description>Plugin to set Android window background for Cordova/Ionic applications</description>
+  <license>MIT</license>
+  <author>Douglas Zaltron</author>
+  <keywords>cordova, ionic, android, color, background, window</keywords>
+
+  <engines>
+    <engine name="cordova" version=">=6.2.0" />
+    <engine name="cordova-android" version=">=6.0.0" />
+  </engines>
+
+  <platform name="android">
+    <preference name="WINDOW_BACKGROUND_COLOR" default="#ffffff" />
+  </platform>
+
+    <hook type="after_prepare" src="scripts/apply-changes.js" />
+    <hook type="after_plugin_install" src="scripts/apply-changes.js" />
+
+</plugin>
