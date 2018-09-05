@@ -21,6 +21,9 @@
     "email": "douglaszaltron@gmail.com",
     "url": "https://github.com/douglaszaltron"
   },
+  "dependencies": {
+    "xml2js": "~0.4.19"
+  },
   "license": "MIT",
   "homepage": "https://github.com/douglaszaltron/cordova-plugin-window-background"
 }
