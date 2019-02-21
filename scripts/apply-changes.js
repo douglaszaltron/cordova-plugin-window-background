@@ -2,6 +2,7 @@ const PLUGIN_NAME = "cordova-plugin-window-background";
 
 const V6 = "cordova-android@6";
 const V7 = "cordova-android@7";
+const V8 = "cordova-android@8";
 
 var FILE_PATHS = {};
 
@@ -11,6 +12,11 @@ FILE_PATHS[V6] = {
 };
 
 FILE_PATHS[V7] = {
+    "android.manifest": "platforms/android/app/src/main/AndroidManifest.xml",
+    "android.styles": "platforms/android/app/src/main/res/values/cordova-plugin-window-background-styles.xml"
+};
+
+FILE_PATHS[V8] = {
     "android.manifest": "platforms/android/app/src/main/AndroidManifest.xml",
     "android.styles": "platforms/android/app/src/main/res/values/cordova-plugin-window-background-styles.xml"
 };
@@ -28,7 +34,22 @@ function onError(error) {
 
 function getCordovaAndroidVersion() {
     var cordovaVersion = require(path.resolve(process.cwd(), 'platforms/android/cordova/version'));
-    return parseInt(cordovaVersion.version) === 7 ? V7 : V6;
+
+    switch(parseInt(cordovaVersion.version)) {
+        case 6:
+          cordovaVersion = V6
+          break;
+        case 7:
+          cordovaVersion = V7
+          break;
+        case 8:
+          cordovaVersion = V8
+          break;
+        default:
+          cordovaVersion = V8
+      }
+
+    return cordovaVersion;
 }
 
 
@@ -43,7 +64,6 @@ function run() {
     }
 
     platformVersion = getCordovaAndroidVersion();
-    log("Android platform: " + platformVersion);
 
     var data = fs.readFileSync(path.resolve(process.cwd(), 'config.xml'));
 

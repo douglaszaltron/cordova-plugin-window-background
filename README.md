@@ -8,7 +8,7 @@ This allows you to avoid the standard dark grey background which will flash for 
 
 ## Installation
 
-You'll need to set your desired window background color while installing the plugin by supplying the `WINDOW_BACKGROUND_COLOR` variable. Set it to whatever you want, preferrably the same color as your splash screen.
+You'll need to set your desired window background color while installing the plugin by supplying the `WINDOW_BACKGROUND_COLOR` variable. Set it to whatever you want, preferably the same color as your splash screen.
 
     cordova plugin add cordova-plugin-window-background --variable WINDOW_BACKGROUND_COLOR=#ffffff --save
 	
