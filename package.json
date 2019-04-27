@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-window-background",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Plugin to set Android window background for Cordova/Ionic applications",
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
     "url": "https://github.com/douglaszaltron"
   },
   "dependencies": {
-    "xml2js": "~0.4.19"
+    "xml2js": "0.4.19",
+    "q": "1.5.1"
   },
   "license": "MIT",
   "homepage": "https://github.com/douglaszaltron/cordova-plugin-window-background"

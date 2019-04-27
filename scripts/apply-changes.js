@@ -1,8 +1,7 @@
 const PLUGIN_NAME = "cordova-plugin-window-background";
 
 const V6 = "cordova-android@6";
-const V7 = "cordova-android@7";
-const V8 = "cordova-android@8";
+const V9 = "cordova-android@9";
 
 var FILE_PATHS = {};
 
@@ -11,12 +10,7 @@ FILE_PATHS[V6] = {
     "android.styles": "platforms/android/res/values/cordova-plugin-window-background-styles.xml"
 };
 
-FILE_PATHS[V7] = {
-    "android.manifest": "platforms/android/app/src/main/AndroidManifest.xml",
-    "android.styles": "platforms/android/app/src/main/res/values/cordova-plugin-window-background-styles.xml"
-};
-
-FILE_PATHS[V8] = {
+FILE_PATHS[V9] = {
     "android.manifest": "platforms/android/app/src/main/AndroidManifest.xml",
     "android.styles": "platforms/android/app/src/main/res/values/cordova-plugin-window-background-styles.xml"
 };
@@ -35,26 +29,16 @@ function onError(error) {
 function getCordovaAndroidVersion() {
     var cordovaVersion = require(path.resolve(process.cwd(), 'platforms/android/cordova/version'));
 
-    switch(parseInt(cordovaVersion.version)) {
-        case 6:
-          cordovaVersion = V6
-          break;
-        case 7:
-          cordovaVersion = V7
-          break;
-        case 8:
-          cordovaVersion = V8
-          break;
-        default:
-          cordovaVersion = V8
-      }
+    if (parseInt(cordovaVersion.version) <= 6) {
+        cordovaVersion = V6;
+    } else {
+        cordovaVersion = V9;
+    }
 
     return cordovaVersion;
 }
 
-
 function run() {
-
     try {
         fs = require('fs');
         path = require('path');
@@ -88,7 +72,7 @@ function run() {
 
             var stylesPath = path.resolve(process.cwd(), FILE_PATHS[platformVersion]["android.styles"]);
             fs.writeFileSync(stylesPath, '<resources><style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar"><item name="android:windowBackground">@color/windowBackgroundColor</item></style><color name="windowBackgroundColor">' + color + '</color></resources>');
-            
+
         } else {
             log("No custom color found in config.xml - using plugin default");
         }
@@ -108,8 +92,8 @@ function attempt(fn) {
     }
 }
 
-module.exports = function (ctx) {
-    deferral = ctx.requireCordovaModule('q').defer();
+module.exports = function () {
+    deferral = require('q').defer();
     attempt(run)();
     return deferral.promise;
 };
