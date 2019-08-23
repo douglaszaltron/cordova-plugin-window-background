@@ -13,9 +13,8 @@
 
   <platform name="android">
     <preference name="WINDOW_BACKGROUND_COLOR" default="#ffffff" />
+    <hook type="after_prepare" src="scripts/apply-changes.js" />
+    <hook type="after_plugin_add" src="scripts/apply-changes.js" />
+    <hook type="after_plugin_install" src="scripts/apply-changes.js" />
   </platform>
-
-  <hook type="after_prepare" src="scripts/apply-changes.js" />
-  <hook type="after_plugin_add" src="scripts/apply-changes.js" />
-  <hook type="after_plugin_install" src="scripts/apply-changes.js" />
 </plugin>
